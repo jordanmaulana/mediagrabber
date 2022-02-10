@@ -1,4 +1,0 @@
-#Thu Feb 10 11:47:13 WIB 2022
-base.0=/Users/jordanmaulana/Documents/isenjo/mediagrabber/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
-renamed.0=classes.dex
-path.0=classes.dex
