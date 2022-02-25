@@ -21,6 +21,7 @@ class InAppWebViewExampleScreen extends StatefulWidget {
 class _InAppWebViewExampleScreenState extends State<InAppWebViewExampleScreen> {
   final GlobalKey webViewKey = GlobalKey();
   static const platform = MethodChannel('samples.flutter.dev/grabber');
+  int found = 0;
 
   InAppWebViewController? webViewController;
   InAppWebViewGroupOptions options = InAppWebViewGroupOptions(
@@ -136,30 +137,29 @@ class _InAppWebViewExampleScreenState extends State<InAppWebViewExampleScreen> {
               children: [
                 InAppWebView(
                   key: webViewKey,
-                  onLoadResource: (InAppWebViewController webViewController,
-                      LoadedResource source) async {
-                    log("resource load");
-                    log("url ${source.url.toString()}");
-                    log("viewUrl ${await webViewController.getUrl()}");
-
-                    // await platform
-                    //     .invokeMethod('getBatteryLevel')
-                    //     .then((value) {
-                    //   log("got battery $value");
-                    // });
-
+                  onLoadNativeResource:
+                      (InAppWebViewController webViewController,
+                          String url) async {
+                    log("resource load ${found++}");
                     platform.invokeMethod(
                       'grabMedia',
                       {
-                        "viewUrl":
-                            (await webViewController.getUrl()).toString(),
-                        "url": source.url.toString(),
-                        "title": "TEST"
+                        "viewUrl": url,
+                        "url": url,
+                        "title": "TEST",
                       },
                     ).then((value) {
                       log("got response $value");
                       mediaProvider.addResourse(value);
                     });
+                  },
+                  onLoadResource: (InAppWebViewController webViewController,
+                      LoadedResource source) async {
+                    // await platform
+                    //     .invokeMethod('getBatteryLevel')
+                    //     .then((value) {
+                    //   log("got battery $value");
+                    // });
                   },
                   // contextMenu: contextMenu,
                   initialUrlRequest: URLRequest(url: Uri.parse(webSamples[3])),
