@@ -1,4 +1,4 @@
-package com.example.mediagrabber.Utils;
+package com.pichillilorenzo.flutter_inappwebview.utils;
 
 import android.annotation.SuppressLint;
 

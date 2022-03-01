@@ -1,15 +1,14 @@
-package com.example.mediagrabber.Grabber;
+package android.src.main.java.com.pichillilorenzo.flutter_inappwebview.Grabber;
 
 import android.content.Context;
 
-import com.example.mediagrabber.R;
 
 public class URLAddFilter {
 
-    public static boolean IsContainsAdURL(Context context, String URL) {
+    public static boolean IsContainsAdURL(String URL) {
         String urlLowerCase = URL.toLowerCase();
         boolean urlMightAd = false;
-        String[] ad_filters = context.getResources().getStringArray(R.array.ad_site_filters);
+        String[] ad_filters = {"taboola.com", "googleadservices.com"};
 
         for (String filter : ad_filters) {
             if (urlLowerCase.contains(filter)) {
@@ -24,7 +23,7 @@ public class URLAddFilter {
     public static boolean DoNotCheckIf(Context context, String URL) {
         String urlLowerCase = URL.toLowerCase();
         boolean urlristricted = false;
-        String[] url_filters = context.getResources().getStringArray(R.array.ristricted_sites);
+        String[] url_filters = {"youtube.com", "pornhub.org"};
 
         for (String filter : url_filters) {
             if (urlLowerCase.contains(filter)) {

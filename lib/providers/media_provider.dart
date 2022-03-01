@@ -8,13 +8,21 @@ class MediaProvider extends ChangeNotifier {
   addResourse(String data) {
     var result = data.split(" ");
     if (result[0] == "video") {
-      videos.add(result[1]);
+      if (!videos.contains(result[1])) {
+        videos.add(result[1]);
+        notifyListeners();
+      }
     } else if (result[0] == "audio") {
-      audios.add(result[1]);
+      if (!audios.contains(result[1])) {
+        audios.add(result[1]);
+        notifyListeners();
+      }
     } else if (result[0] == "image") {
-      images.add(result[1]);
+      if (!images.contains(result[1])) {
+        images.add(result[1]);
+        notifyListeners();
+      }
     }
-    notifyListeners();
   }
 
   clearAll() {

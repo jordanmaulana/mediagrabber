@@ -141,28 +141,11 @@ class _InAppWebViewExampleScreenState extends State<InAppWebViewExampleScreen> {
                       (InAppWebViewController webViewController,
                           String url) async {
                     log("resource load ${found++}");
-                    platform.invokeMethod(
-                      'grabMedia',
-                      {
-                        "viewUrl": url,
-                        "url": url,
-                        "title": "TEST",
-                      },
-                    ).then((value) {
-                      log("got response $value");
-                      mediaProvider.addResourse(value);
-                    });
-                  },
-                  onLoadResource: (InAppWebViewController webViewController,
-                      LoadedResource source) async {
-                    // await platform
-                    //     .invokeMethod('getBatteryLevel')
-                    //     .then((value) {
-                    //   log("got battery $value");
-                    // });
+                    log("got response $url");
+                    mediaProvider.addResourse(url);
                   },
                   // contextMenu: contextMenu,
-                  initialUrlRequest: URLRequest(url: Uri.parse(webSamples[3])),
+                  initialUrlRequest: URLRequest(url: Uri.parse(webSamples[5])),
                   // initialFile: "assets/index.html",
                   initialUserScripts: UnmodifiableListView<UserScript>([]),
                   initialOptions: options,

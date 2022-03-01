@@ -2,13 +2,14 @@
  * Copyright (c) 2021.  Hurricane Development Studios
  */
 
-package com.example.mediagrabber.Grabber;
+package com.pichillilorenzo.flutter_inappwebview.grabber;
 
-import android.content.Context;
+import static android.src.main.java.com.pichillilorenzo.flutter_inappwebview.Grabber.URLAddFilter.IsContainsAdURL;
+
+import android.app.Service;
+import android.content.Intent;
 import android.media.MediaMetadataRetriever;
 import android.util.Log;
-
-import com.example.mediagrabber.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,7 +27,7 @@ import java.nio.charset.Charset;
 import java.util.HashMap;
 
 
-public abstract class ContentSearch {
+public abstract class ContentSearch extends Service {
 
     private static final String VIDEO = "video";
     private static final String AUDIO = "audio";
@@ -36,7 +37,6 @@ public abstract class ContentSearch {
     private static final String YOUTUBE = "youtube.com";
     private static final String METACAFE = "metacafe.com";
     private static final String MYSPACE = "myspace.com";
-    private Context context;
     private String url;
     private String page;
     private String title;
@@ -55,12 +55,19 @@ public abstract class ContentSearch {
     public abstract void onAudioFound(String size, String type, String link, String name,
                                       String page, boolean chunked, String website, boolean audio);
 
-    public ContentSearch(Context context, String url, String page, String title) {
-        this.context = context;
+    public ContentSearch(String url, String page, String title) {
         this.url = url;
         this.page = page;
         this.title = title;
         numLinksInspected = 0;
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        run();
+        stopSelf();
+
+        return START_NOT_STICKY;
     }
 
     private String getUrlWithoutParameters(String url) throws URISyntaxException {
@@ -74,9 +81,9 @@ public abstract class ContentSearch {
 
     public void run() {
         String urlLowerCase = url.toLowerCase();
-        String[] video_filters = context.getResources().getStringArray(R.array.videourl_filters);
-        String[] image_filters = context.getResources().getStringArray(R.array.imageurl_filters);
-        String[] audio_filters = context.getResources().getStringArray(R.array.audiourl_filters);
+        String[] video_filters = {"mp4", "video", "googleusercontent", "embed", "m3u8", "webm"};
+        String[] image_filters = {"image", "jpg", "jpeg", "gif", "webp"};
+        String[] audio_filters = {"mpeg", "mp3"};
 
         boolean urlMightBeVideo = false;
         boolean urlMightBeImage = false;
@@ -96,7 +103,7 @@ public abstract class ContentSearch {
             }
         }
         if (urlMightBeVideo) {
-            if (URLAddFilter.IsContainsAdURL(context, url)) {
+            if (IsContainsAdURL(url)) {
                 urlMightBeVideo = false;
             }
         }

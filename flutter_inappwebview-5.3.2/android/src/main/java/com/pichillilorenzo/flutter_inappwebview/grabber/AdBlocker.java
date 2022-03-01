@@ -1,4 +1,4 @@
-package com.example.mediagrabber.Grabber;
+package android.src.main.java.com.pichillilorenzo.flutter_inappwebview.Grabber;
 
 import android.content.Context;
 import android.content.SharedPreferences;
