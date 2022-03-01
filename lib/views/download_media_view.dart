@@ -15,7 +15,7 @@ class DownloadMediaView extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(16.0),
         children: [
-          const Text("Videos:"),
+          Text("Videos (${mediaProvider.videos.length}):"),
           ListView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
@@ -27,7 +27,7 @@ class DownloadMediaView extends StatelessWidget {
             },
           ),
           const Divider(),
-          const Text("Images:"),
+          Text("Images (${mediaProvider.images.length}):"),
           ListView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
@@ -39,7 +39,7 @@ class DownloadMediaView extends StatelessWidget {
             },
           ),
           const Divider(),
-          const Text("Audios:"),
+          Text("Audios (${mediaProvider.audios.length}):"),
           ListView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),

@@ -4,6 +4,7 @@ const List<String> webSamples = [
   "https://www2.f2movies.ru/series/shark-tank-lxr0q/n31lk3n",
   "https://zoro.to/watch/death-note-60?ep=1464",
   "https://ww1.gogoanime2.org/watch/blue-reflex-ray/24",
+  "https://oploverz.fan/one-piece-episode-1012-subtitle-indonesia/"
 ];
 
 const List<String> videoTypes = [
