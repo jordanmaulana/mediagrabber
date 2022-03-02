@@ -61,6 +61,7 @@ class HeadlessInAppWebView implements WebView {
       this.onConsoleMessage,
       this.shouldOverrideUrlLoading,
       this.onLoadResource,
+      this.onLoadNativeResource,
       this.onScrollChanged,
       this.onDownloadStart,
       this.onLoadResourceCustomScheme,
@@ -455,5 +456,5 @@ class HeadlessInAppWebView implements WebView {
 
   @override
   void Function(InAppWebViewController controller, String resource)?
-      get onLoadNativeResource => throw UnimplementedError();
+      onLoadNativeResource;
 }

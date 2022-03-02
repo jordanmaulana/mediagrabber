@@ -144,9 +144,7 @@ class _InAppWebViewExampleScreenState extends State<InAppWebViewExampleScreen> {
                     log("got response $url");
                     mediaProvider.addResourse(url);
                   },
-                  // contextMenu: contextMenu,
                   initialUrlRequest: URLRequest(url: Uri.parse(webSamples[5])),
-                  // initialFile: "assets/index.html",
                   initialUserScripts: UnmodifiableListView<UserScript>([]),
                   initialOptions: options,
                   pullToRefreshController: pullToRefreshController,

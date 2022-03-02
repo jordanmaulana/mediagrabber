@@ -95,7 +95,7 @@ abstract class WebView {
           InAppWebViewController controller, LoadedResource resource)?
       onLoadResource;
 
-  final void Function(InAppWebViewController controller, String resource)?
+  final void Function(InAppWebViewController controller, String url)?
       onLoadNativeResource;
 
   ///Event fired when the [WebView] scrolls.

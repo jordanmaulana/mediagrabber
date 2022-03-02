@@ -104,8 +104,6 @@ class InAppWebViewController {
         String url = call.arguments;
         if (_webview != null && _webview!.onLoadStart != null)
           _webview!.onLoadNativeResource!(this, url);
-        else
-          _inAppBrowser!.onLoadNativeResource(url);
         break;
       case "onLoadStart":
         _injectedScriptsFromURL.clear();

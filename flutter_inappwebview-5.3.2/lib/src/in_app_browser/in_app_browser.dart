@@ -354,7 +354,6 @@ class InAppBrowser {
   ///
   ///**NOTE**: In order to be able to listen this event, you need to set [InAppWebViewOptions.useOnLoadResource] and [InAppWebViewOptions.javaScriptEnabled] options to `true`.
   void onLoadResource(LoadedResource resource) {}
-  void onLoadNativeResource(String url) {}
 
   ///Event fired when the [InAppBrowser] webview scrolls.
   ///
